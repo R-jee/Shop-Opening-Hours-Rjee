@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Try jQuery Online</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function() {
+   $("em").addClass("selected");
+   $("#myid").addClass("highlight");
+});
+
+</script>
+<style>
+.selected { 
+    color:red; 
+}
+.highlight { 
+    background:yellow; 
+}
+</style>
+</head>
+<body>
+    <div>
+        <table class="opening-hours-table">
+                <tr id="CONTACT_HOURS_DAY_REND_1" itemprop="openingHours" title="Open Monday at 9am to 6pm">
+                    <td>Monday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_2" itemprop="openingHours" title="Open Tuesday at 9am to 6pm">
+                    <td>Tuesday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_3" itemprop="openingHours" title="Open Wednesday at 9am to 6pm">
+                    <td>Wednesday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_4" itemprop="openingHours" title="Open Thursday at 9am to 8pm">
+                    <td>Thursday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">20:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_5" itemprop="openingHours" title="Open Friday at 9am to 6pm">
+                    <td>Friday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_6" itemprop="openingHours" title="Open Saturday at 10am to 6pm">
+                    <td>Saturday</td>
+                    <td class="opens">10:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="CONTACT_HOURS_DAY_REND_0" itemprop="openingHours" title="Open Sunday at 11am to 4pm">
+                    <td>Sunday</td>
+                    <td class="opens">11:00</td>
+                    <td>-</td>
+                    <td class="closes">16:00</td>
+                </tr>
+            </table>
+    </div>
+    
+<script>
+    $("#CONTACT_HOURS_DAY_REND_"+  new Date().getDay()).css({'color':"Green", 'font-weight':"900" });
+</script>
+
+
+</body>
+</html>

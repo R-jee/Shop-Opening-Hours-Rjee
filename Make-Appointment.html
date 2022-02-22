@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Try jQuery Online</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("em").addClass("selected");
+            $("#myid").addClass("highlight");
+        });
+    </script>
+    <style>
+        .selected {
+            color: red;
+        }
+
+        .highlight {
+            background: yellow;
+        }
+
+        .openinghours {
+            font-family: Lucida Console;
+            border-radius: 4px;
+            margin: 10px;
+            box-shadow: 0 0 10px black;
+            padding: 0 10px 0 10px;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .openinghourscontent {
+            float: left;
+        }
+
+        .openinghourscontent h2 {
+            display: block;
+            text-align: center;
+            margin-top: .33em;
+        }
+
+        .openinghourscontent button {
+            color: white;
+            font-family: Courier New;
+            font-size: large;
+            font-weight: bolder;
+            background-color: #4679BD;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .today {
+            color: #8AC007;
+        }
+
+        .opening-hours-table tr td:first-child {
+            font-weight: bold;
+        }
+
+        #open-status {
+            display: block;
+            margin-top: -1em;
+            text-align: center;
+            border: dotted lightgrey 3px;
+        }
+
+        .openorclosed:after {
+            content: " open during these hours:";
+        }
+
+        .open {
+            color: green;
+        }
+
+        .open:after {
+            content: " Open";
+            color: #6C0;
+        }
+
+        .closed:after {
+            content: " Closed";
+            color: red;
+        }
+
+        .opening-hours-table tr td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <section class="openinghours">
+        <div class="openinghourscontent section">
+            <div class="header">
+                <h2>Opening hours</h2>
+                <span id="open-status"><small class="openorclosed">We are</small></span>
+
+            </div>
+            <table class="opening-hours-table">
+                <tr id="Monday" itemprop="openingHours" title="Open Monday at 9am to 6pm">
+                    <td>Monday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="Tuesday" itemprop="openingHours" title="Open Tuesday at 9am to 6pm">
+                    <td>Tuesday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="Wednesday" itemprop="openingHours" title="Open Wednesday at 9am to 6pm">
+                    <td>Wednesday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="Thursday" itemprop="openingHours" title="Open Thursday at 9am to 8pm">
+                    <td>Thursday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">20:00</td>
+                </tr>
+                <tr id="Friday" itemprop="openingHours" title="Open Friday at 9am to 6pm">
+                    <td>Friday</td>
+                    <td class="opens">09:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="Saturday" itemprop="openingHours" title="Open Saturday at 10am to 6pm">
+                    <td>Saturday</td>
+                    <td class="opens">10:00</td>
+                    <td>-</td>
+                    <td class="closes">18:00</td>
+                </tr>
+                <tr id="Sunday" itemprop="openingHours" title="Open Sunday at 11am to 4pm">
+                    <td>Sunday</td>
+                    <td class="opens">11:00</td>
+                    <td>-</td>
+                    <td class="closes">16:00</td>
+                </tr>
+            </table>
+            <button style="cursor: pointer;" title="Make an Apointment Online" data-appointlet="u387">Make an Apointment
+                Online</button>
+            <script>
+                (function (e, t, n, r) {
+                    if (e) return;
+                    t._appt = true;
+                    var i = n.createElement(r),
+                        s = n.getElementsByTagName(r)[0];
+                    i.async = true;
+                    i.src = '//dje0x8zlxc38k.cloudfront.net/loaders/s-min.js';
+                    s.parentNode.insertBefore(i, s)
+                })(window._appt, window, document, "script")
+            </script>
+            <script>
+                var currentDate = new Date();
+                var weekday = [];
+                weekday[0] = "Sunday";
+                weekday[1] = "Monday";
+                weekday[2] = "Tuesday";
+                weekday[3] = "Wednesday";
+                weekday[4] = "Thursday";
+                weekday[5] = "Friday";
+                weekday[6] = "Saturday";
+
+                var currentDay = weekday[currentDate.getDay()];
+
+                var currentTimeHours = currentDate.getHours();
+                currentTimeHours = currentTimeHours < 10 ? "0" + currentTimeHours : currentTimeHours;
+                var currentTimeMinutes = currentDate.getMinutes();
+                var timeNow = currentTimeHours + "" + currentTimeMinutes;
+
+                var currentDayID = "#" + currentDay; //gets todays weekday and turns it into id
+                $(currentDayID).toggleClass("today"); //this works at hightlighting today
+
+                var openTimeSplit = $(currentDayID).children('.opens').text().split(":");
+
+                var openTimeHours = openTimeSplit[0];
+                openTimeHours = openTimeHours < 10 ? "0" + openTimeHours : openTimeHours;
+
+                var openTimeMinutes = openTimeSplit[1];
+                var openTimex = openTimeSplit[0] + openTimeSplit[1];
+
+                var closeTimeSplit = $(currentDayID).children('.closes').text().split(":");
+
+                var closeTimeHours = closeTimeSplit[0];
+                closeTimeHours = closeTimeHours < 10 ? "0" + closeTimeHours : closeTimeHours;
+
+                var closeTimeMinutes = closeTimeSplit[1];
+                var closeTimex = closeTimeSplit[0] + closeTimeSplit[1];
+
+                if (timeNow >= openTimex && timeNow <= closeTimex) {
+                    $(".openorclosed").toggleClass("open");
+                } else {
+                    $(".openorclosed").toggleClass("closed");
+                }
+            </script>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
